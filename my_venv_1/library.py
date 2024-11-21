@@ -25,6 +25,7 @@ class Library:
         self.books[book.id] = book
 
     # Удаляем книгу
+    # Я рискну не писать блок try except, так как при работе со словарем, в худшем случае, просто будет выведено "Book not found"
     def remove_book(self, book_id: int) -> None:
         if book_id in self.books:
             del self.books[book_id]
