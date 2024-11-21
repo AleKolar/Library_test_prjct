@@ -5,16 +5,16 @@ from serializer import LibrarySerializer
 '''
 Терминальные команды для интерфейса CLI:
 1.	Добавление книги:
-python cli.py add
+python cli.py --add "Book Title" "Author Name" Year
 
 2.	Удаление книги:
-python cli.py remove
+python cli.py --remove Book_ID
 
 3.	Поиск книги:
-python cli.py search
+python cli.py --search "Search Term"
 
 4.	Отображение всех книг:
-python cli.py display
+python cli.py --display
 
 5.	Изменение статуса книги:
 python cli.py change_status
