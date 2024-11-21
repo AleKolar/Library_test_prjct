@@ -1,43 +1,59 @@
+from typing import List
+
+# Инициализация класса Книга
 class Book:
-    next_id = 1  # автоинкреминтация начиная с 1
+    next_id: int = 1  # автоинкрементация начиная с 1
 
-    def __init__(self, title, author, year):
-        self.id = Book.next_id
+    def __init__(self, title: str, author: str, year: int):
+        self.id: int = Book.next_id
         Book.next_id += 1
-        self.title = title
-        self.author = author
-        self.year = year
-        self.status = "в наличии"
+        self.title: str = title
+        self.author: str = author
+        self.year: int = year
+        self.status: str = "в наличии"
 
-
+# Инициализация класса Библиотека, где Библиотека - объект словарь(хранилище) с ключами: атрибуты класса Книга
 class Library:
     def __init__(self):
-        self.books = {}
+        self.books: dict[int, Book] = {}
 
-    def add_book(self, title, author, year):
-        book = Book(title, author, year)
+    # Добавляем книгу
+    def add_book(self, title: str, author: str, year: int) -> None:
+        book: Book = Book(title, author, year)
         self.books[book.id] = book
 
-    def remove_book(self, book_id):
+    # Удаляем книгу
+    def remove_book(self, book_id: int) -> None:
         if book_id in self.books:
             del self.books[book_id]
         else:
             print("Book not found")
-
-    def search_book(self, search_term):
-        found_books = []
+    # Ищем книгу по ключам
+    # Инициализация класса Книга
+    def search_book(self, search_term: str) -> List[Book]:
+        found_books: List[Book] = []
+        book_found: bool = False
         for book_id, book in self.books.items():
             if search_term in [book.title, book.author, str(book.year)]:
                 found_books.append(book)
+                book_found = True
+        if book_found:
+            print("Books found!")
+            for book in found_books:
+                print(f"Found Book: {book.title} by {book.author}")
+        else:
+            print("No books found.")
         return found_books
 
-    def display_books(self):
+    # Отображение нашей библиотеки со всеми книгами
+    def display_books(self) -> None:
         for book_id, book in self.books.items():
             print(f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
 
-    def change_status(self, book_id, new_status):
+    # Меняем status в логике , либо книга "в наличии", либо её нет, так как она - "выдана"
+    def change_status(self, book_id: int, new_status: str) -> None:
         if book_id in self.books:
-            current_status = self.books[book_id].status
+            current_status: str = self.books[book_id].status
             if current_status == "в наличии" and new_status == "выдана":
                 self.books[book_id].status = new_status
             elif current_status == "выдана" and new_status == "в наличии":
