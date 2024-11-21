@@ -1,5 +1,6 @@
 from typing import List
 
+
 # Инициализация класса Книга
 class Book:
     next_id: int = 1  # автоинкрементация начиная с 1
@@ -11,6 +12,7 @@ class Book:
         self.author: str = author
         self.year: int = year
         self.status: str = "в наличии"
+
 
 # Инициализация класса Библиотека, где Библиотека - объект словарь(хранилище) с ключами: атрибуты класса Книга
 class Library:
@@ -28,6 +30,7 @@ class Library:
             del self.books[book_id]
         else:
             print("Book not found")
+
     # Ищем книгу по ключам
     # Инициализация класса Книга
     def search_book(self, search_term: str) -> List[Book]:
@@ -48,7 +51,8 @@ class Library:
     # Отображение нашей библиотеки со всеми книгами
     def display_books(self) -> None:
         for book_id, book in self.books.items():
-            print(f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
+            print(
+                f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
 
     # Меняем status в логике , либо книга "в наличии", либо её нет, так как она - "выдана"
     def change_status(self, book_id: int, new_status: str) -> None:
@@ -62,5 +66,3 @@ class Library:
                 print("Invalid status change. The book is currently " + current_status)
         else:
             print("Book not found")
-
-
