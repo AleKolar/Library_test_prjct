@@ -1,6 +1,9 @@
 class Book:
+    next_id = 1  # автоинкреминтация начиная с 1
+
     def __init__(self, title, author, year):
-        self.id = id(self)
+        self.id = Book.next_id
+        Book.next_id += 1
         self.title = title
         self.author = author
         self.year = year
@@ -30,8 +33,7 @@ class Library:
 
     def display_books(self):
         for book_id, book in self.books.items():
-            print(
-                f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
+            print(f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
 
     def change_status(self, book_id, new_status):
         if book_id in self.books:
@@ -44,3 +46,5 @@ class Library:
                 print("Invalid status change. The book is currently " + current_status)
         else:
             print("Book not found")
+
+
