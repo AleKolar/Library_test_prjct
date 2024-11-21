@@ -1,6 +1,6 @@
 import json
 
-from my_venv_1.library import Book
+from library import Book
 
 
 class LibrarySerializer:
