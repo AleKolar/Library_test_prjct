@@ -2,6 +2,24 @@ import argparse
 from library import Library
 from serializer import LibrarySerializer
 
+'''
+Терминальные команды для интерфейса CLI:
+1.	Добавление книги:
+python cli.py add
+
+2.	Удаление книги:
+python cli.py remove
+
+3.	Поиск книги:
+python cli.py search
+
+4.	Отображение всех книг:
+python cli.py display
+
+5.	Изменение статуса книги:
+python cli.py change_status
+
+'''
 def main():
     parser = argparse.ArgumentParser(description='Library Management System')
     parser.add_argument('--add', nargs=3, metavar=('title', 'author', 'year'), help='Add a new book to the library')
