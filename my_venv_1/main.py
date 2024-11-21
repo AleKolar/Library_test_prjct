@@ -14,7 +14,7 @@ if __name__ == "__main__":
     # Загрузка библиотеки из файла
     library.books = LibrarySerializer.load_from_file("library_data.json")
 
-    # Поиск книг по заданному термину
+    # Поиск книг по заданным критериям из ТЗ
     found_books = library.search_book("Python")
     for book in found_books:
         print(f"Found Book: {book.title} by {book.author}")
