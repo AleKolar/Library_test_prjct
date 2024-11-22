@@ -17,7 +17,7 @@ python cli.py --search "Search Term"
 python cli.py --display
 
 5.	Изменение статуса книги:
-python cli.py change_status
+python cli.py --change_status
 
 '''
 def main():
@@ -26,6 +26,8 @@ def main():
     parser.add_argument('--remove', type=int, help='Remove a book by ID')
     parser.add_argument('--search', type=str, help='Search for a book by title, author, or year')
     parser.add_argument('--display', action='store_true', help='Display all books in the library')
+    parser.add_argument('--change_status', nargs=2, metavar=('book_id', 'new_status'),
+                        help='Change the status of a book by ID')
 
     args = parser.parse_args()
 
@@ -46,6 +48,10 @@ def main():
         LibrarySerializer.save_to_file(library.books, library_data_file)
     elif args.search:
         library.search_book(args.search)
+    elif args.change_status:
+        book_id, new_status = args.change_status
+        library.change_status(int(book_id), new_status)
+        LibrarySerializer.save_to_file(library.books, library_data_file)
     elif args.display:
         library.display_books()
     else:

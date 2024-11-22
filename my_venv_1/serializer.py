@@ -24,6 +24,11 @@ class LibrarySerializer:
 
     @staticmethod
     def update_status_from_json(books, json_data):
-        for book_data in json.loads(json_data):
-            if book_data['id'] in books:
-                books[book_data['id']].status = book_data['status']
+        book_updates = json.loads(json_data)
+        for update in book_updates:
+            book_id = update['id']
+            new_status = update['status']
+            if book_id in books:
+                books[book_id].status = new_status
+            else:
+                print(f"Book with id {book_id} not found")
