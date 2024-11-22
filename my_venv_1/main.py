@@ -39,3 +39,16 @@ if __name__ == "__main__":
 
     # Отображение всех книг после обновления статусов
     library.display_books()
+
+    # Вывод информации о книгах до обновления статуса
+    print("Books before update:")
+    for book_id, book in library.books.items():
+        print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
+
+    # Вызов метода для обновления статуса
+    LibrarySerializer.update_status_from_json(library.books, json_data)
+
+    # Вывод информации о книгах после обновления статуса
+    print("Books after update:")
+    for book_id, library.books in library.book.items():
+        print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
