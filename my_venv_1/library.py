@@ -60,11 +60,11 @@ class Library:
     """
     Отображение нашей библиотеки со всеми книгами
     """
+
     def display_books(self) -> None:
         for book_id, book in self.books.items():
             print(
-                f"ID: {book.id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
-
+                f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
     """
     Меняем status в логике , либо книга "в наличии", либо её нет, так как она - "выдана"
     """

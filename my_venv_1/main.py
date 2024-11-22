@@ -7,6 +7,7 @@ if __name__ == "__main__":
     # Добавление нескольких книг
     library.add_book( "Python Programming", "John Doe", 2021)
     library.add_book("Data Science Handbook", "Jane Smith", 2020)
+    library.add_book("Arthur king", "Mary Ann", 2000)
 
     # Сохранение библиотеки в файл
     LibrarySerializer.save_to_file(library.books, "library_data.json")
@@ -33,7 +34,7 @@ if __name__ == "__main__":
 
 
     # Обновление статуса книг из JSON данных
-    json_data = '[{"id": 1, "status": "выдана"}, {"id": 2, "status": "в наличии"}]'
+    json_data = '[{"id": 1, "status": "выдана"}, {"id": 2, "status": "выдана"}]'
     LibrarySerializer.update_status_from_json(library.books, json_data)
 
     # Отображение всех книг после обновления статусов

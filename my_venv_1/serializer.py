@@ -2,6 +2,7 @@ import json
 
 from library import Book
 
+file_name = 'C:/Users/User/PycharmProjects/Test_Project_8/my_venv_1/library_data.json'
 
 class LibrarySerializer:
     @staticmethod
@@ -32,3 +33,4 @@ class LibrarySerializer:
                 books[book_id].status = new_status
             else:
                 print(f"Book with id {book_id} not found")
+        LibrarySerializer.save_to_file(books, file_name)
