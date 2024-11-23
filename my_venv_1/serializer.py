@@ -50,3 +50,16 @@ class LibrarySerializer:
                 print("Некорректные данные обновления статуса книги")
 
         LibrarySerializer.save_to_file(books, file_name)
+
+    @staticmethod
+    def serialize_display_books(books):
+        serialized_books = []
+        for book_id, book in books.items():
+            serialized_books.append({
+                "ID": book_id,
+                "Title": book.title,
+                "Author": book.author,
+                "Year": book.year,
+                "Status": book.status
+            })
+        return json.dumps(serialized_books)

@@ -57,7 +57,8 @@ def main():
         library.change_status(int(book_id), new_status)
         LibrarySerializer.save_to_file(library.books, library_data_file)
     elif args.display:
-        library.display_books()
+        serialized_books = LibrarySerializer.serialize_display_books(library.books)
+        print(serialized_books)
     elif args.get:
         book_id = args.get
         library.get_book(book_id)
