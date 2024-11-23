@@ -4,11 +4,8 @@ from typing import List
 Инициализация класса Книга
 """
 class Book:
-    next_id: int = 1  # автоинкрементация начиная с 1
-
-    def __init__(self, title: str, author: str, year: int):
-        self.id: int = Book.next_id
-        Book.next_id += 1
+    def __init__(self, id: int, title: str, author: str, year: int):
+        self.id: int = id
         self.title: str = title
         self.author: str = author
         self.year: int = year
@@ -35,7 +32,7 @@ class Library:
     #         print("Book not found")
     #         return None
 
-    def get_book(self, book_id):
+    def get_book(self, book_id): # Отображаем книгу по id (Для визуализации)
         if book_id in self.books:
             book = self.books[book_id]
             print(f"Book ID: {book.id}")
@@ -52,7 +49,8 @@ class Library:
     Добавляем книгу
     """
     def add_book(self, title: str, author: str, year: int) -> None:
-        book: Book = Book(title, author, year)
+        book_id = len(self.books) + 1
+        book: Book = Book(book_id,title, author, year)
         self.books[book.id] = book
 
     """

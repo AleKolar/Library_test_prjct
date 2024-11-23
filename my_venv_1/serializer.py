@@ -17,7 +17,7 @@ class LibrarySerializer:
         for book_data in book_data_list:
             if all(key in book_data for key in ['id', 'title', 'author', 'year']):
                 book_id = book_data['id']
-                books[book_id] = Book(book_data['title'], book_data['author'], book_data['year'])
+                books[book_id] = Book(book_id, book_data['title'], book_data['author'], book_data['year'])
             else:
                 print(f"Недостаточно данных для создания книги: {book_data}")
 

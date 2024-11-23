@@ -5,8 +5,8 @@ if __name__ == "__main__":
     library = Library()
 
     # Добавление нескольких книг
-    library.add_book( "Python Programming", "John Doe", 2021)
-    library.add_book("Data Science Handbook", "Jane Smith", 2020)
+    library.add_book( "Python", "John Doe", 2021)
+    library.add_book("Python_2", "Jane Smith", 2020)
     library.add_book("Arthur king", "Mary Ann", 2000)
 
     # Сохранение библиотеки в файл
@@ -16,7 +16,7 @@ if __name__ == "__main__":
     library.books = LibrarySerializer.load_from_file("library_data.json")
 
     # Поиск книг по заданным критериям из ТЗ
-    found_books = library.search_book("Python Programming")
+    found_books = library.search_book("Python")
 
     if found_books:
         for book in found_books:
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     else:
         print("No books found.")
 
-    no_found_books = library.search_book("No Python Programming")
+    no_found_books = library.search_book("No Python")
 
     if no_found_books:
         for book in no_found_books:
