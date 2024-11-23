@@ -63,3 +63,19 @@ class LibrarySerializer:
                 "Status": book.status
             })
         return json.dumps(serialized_books)
+
+    @staticmethod
+    def serialize_id(books, book_id):
+        if book_id in books:
+            book = books[book_id]
+            serialized_book = {
+                "ID": book_id,
+                "Title": book.title,
+                "Author": book.author,
+                "Year": book.year,
+                "Status": book.status
+            }
+            return json.dumps(serialized_book)
+        else:
+            return None
+
