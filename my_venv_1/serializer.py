@@ -11,7 +11,17 @@ class LibrarySerializer:
 
     @staticmethod
     def from_json(json_data):
-        return {book_data['id']: Book(book_data['title'], book_data['author'], book_data['year']) for book_data in json.loads(json_data)}
+        book_data_list = json.loads(json_data)
+        books = {}
+
+        for book_data in book_data_list:
+            if all(key in book_data for key in ['id', 'title', 'author', 'year']):
+                book_id = book_data['id']
+                books[book_id] = Book(book_data['title'], book_data['author'], book_data['year'])
+            else:
+                print(f"Недостаточно данных для создания книги: {book_data}")
+
+        return books
 
     @staticmethod
     def save_to_file(books, file_name):
@@ -26,11 +36,17 @@ class LibrarySerializer:
     @staticmethod
     def update_status_from_json(books, json_data):
         book_updates = json.loads(json_data)
+
         for update in book_updates:
-            book_id = update['id']
-            new_status = update['status']
-            if book_id in books:
-                books[book_id].status = new_status
+            if 'id' in update and 'status' in update:
+                book_id = update['id']
+                new_status = update['status']
+                if book_id in books:
+                    books[book_id].status = new_status
+                    print(f"Статус книги с ID {book_id} успешно обновлен")
+                else:
+                    print(f"Книга с ID {book_id} не найдена")
             else:
-                print(f"Book with id {book_id} not found")
+                print("Некорректные данные обновления статуса книги")
+
         LibrarySerializer.save_to_file(books, file_name)
