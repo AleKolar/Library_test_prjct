@@ -25,6 +25,9 @@ class Library:
     def __init__(self):
         self.books: dict[int, Book] = {}
 
+    def __str__(self):
+        return "\n".join([f"Book {book_id}: {book}" for book_id, book in self.books.items()])
+
     # def get_book(self, book_id: int) -> Book:
     #     if book_id in self.books:
     #         return self.books[book_id]
