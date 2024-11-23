@@ -42,7 +42,7 @@ class Library:
             print(f"Status: {book.status}")
             return book
         else:
-            print("Book not found")
+            return None
 
 
     """

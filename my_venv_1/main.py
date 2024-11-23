@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # Отображение всех книг после обновления статусов
     library.display_books()
 
-    book_id = 4  # Example book ID
+    book_id = 3  # Example book ID
     book_1 = library.get_book(book_id)
     print("Вы это искали:", book_1)
 
@@ -50,10 +50,10 @@ if __name__ == "__main__":
         print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
 
     # Вызов метода для обновления статуса
-    LibrarySerializer.update_status_from_json(library.books, json_data)
-
-    # Вывод информации о книгах после обновления статуса
-    print("Books after update:")
-    for book_id, library.books in library.books.items():
-        print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
+    # LibrarySerializer.update_status_from_json(library.books, json_data)
+    #
+    # # Вывод информации о книгах после обновления статуса
+    # print("Books after update:")
+    # for book_id, library.books in library.books.items():
+    #     print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
 
