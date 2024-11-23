@@ -19,6 +19,9 @@ python cli.py --display
 5.	Изменение статуса книги:
 python cli.py --change_status
 
+6. Отображение книги по id:
+python cli.py --get
+
 '''
 def main():
     parser = argparse.ArgumentParser(description='Library Management System')
@@ -28,6 +31,7 @@ def main():
     parser.add_argument('--display', action='store_true', help='Display all books in the library')
     parser.add_argument('--change_status', nargs=2, metavar=('book_id', 'new_status'),
                         help='Change the status of a book by ID')
+    parser.add_argument('--get', type=int, help='Get a book by its ID')
 
     args = parser.parse_args()
 
@@ -54,6 +58,9 @@ def main():
         LibrarySerializer.save_to_file(library.books, library_data_file)
     elif args.display:
         library.display_books()
+    elif args.get:
+        book_id = args.get
+        library.get_book(book_id)
     else:
         parser.print_help()
 

@@ -25,12 +25,25 @@ class Library:
     def __init__(self):
         self.books: dict[int, Book] = {}
 
-    def get_book(self, book_id: int) -> Book:
+    # def get_book(self, book_id: int) -> Book:
+    #     if book_id in self.books:
+    #         return self.books[book_id]
+    #     else:
+    #         print("Book not found")
+    #         return None
+
+    def get_book(self, book_id):
         if book_id in self.books:
-            return self.books[book_id]
+            book = self.books[book_id]
+            print(f"Book ID: {book.id}")
+            print(f"Title: {book.title}")
+            print(f"Author: {book.author}")
+            print(f"Year: {book.year}")
+            print(f"Status: {book.status}")
+            return book
         else:
             print("Book not found")
-            return None
+
 
     """
     Добавляем книгу

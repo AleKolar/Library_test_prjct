@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # Отображение всех книг после обновления статусов
     library.display_books()
 
-    book_id = 1  # Example book ID
+    book_id = 4  # Example book ID
     book_1 = library.get_book(book_id)
     print("Вы это искали:", book_1)
 
