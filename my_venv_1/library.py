@@ -14,6 +14,9 @@ class Book:
         self.year: int = year
         self.status: str = "в наличии"
 
+    def __str__(self):
+        return f"Book: {self.title} by {self.author} ({self.year})"
+
 
 """
 Инициализация класса Библиотека, где Библиотека - объект словарь(хранилище) с ключами: атрибуты класса Книга
@@ -21,6 +24,13 @@ class Book:
 class Library:
     def __init__(self):
         self.books: dict[int, Book] = {}
+
+    def get_book(self, book_id: int) -> Book:
+        if book_id in self.books:
+            return self.books[book_id]
+        else:
+            print("Book not found")
+            return None
 
     """
     Добавляем книгу
