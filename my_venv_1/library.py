@@ -6,6 +6,8 @@ file_path = "C:/Users/User/PycharmProjects/Test_Project_8/my_venv_1/library_data
 """
 Инициализация класса Книга
 """
+
+
 class Book:
     def __init__(self, id: int, title: str, author: str, year: int, status="в наличии"):
         self.id: int = id
@@ -30,6 +32,8 @@ class Book:
 """
 Инициализация класса Библиотека, где Библиотека - объект словарь(хранилище) с ключами: атрибуты класса Книга
 """
+
+
 class Library:
     def __init__(self):
         self.books: dict[int, Book] = {}
@@ -53,15 +57,16 @@ class Library:
     '''
     Преобразуем объекты Python в данные JSON 
     '''
+
     def serialize_library(self) -> None:
         data = {book_id: book.__dict__ for book_id, book in self.books.items()}
         with open(file_path, "w") as file:
             json.dump(data, file, indent=4)
 
-
     '''
     Преобразуем данные JSON в объекты Python
     '''
+
     def deserialize_library(self) -> None:
         try:
             with open(file_path, "r") as file:
@@ -73,7 +78,8 @@ class Library:
     '''
     Получаем книгу по её id
     '''
-    def get_book(self, book_id): # Отображаем книгу по id (Для визуализации)
+
+    def get_book(self, book_id):  # Отображаем книгу по id (Для визуализации)
         if book_id in self.books:
             book = self.books[book_id]
             print(f"Book ID: {book.id}")
@@ -85,10 +91,10 @@ class Library:
         else:
             return None
 
-
     """
     Добавляем книгу
     """
+
     def add_book(self, title, author, year, status="в наличии"):
         book_id = max(self.books.keys(), default=0) + 1
         self.books[book_id] = Book(book_id, title, author, year, status)
@@ -97,6 +103,7 @@ class Library:
     Удаляем книгу
     Я рискну не писать блок try except, так как при работе со словарем, в худшем случае, просто будет выведено "Book not found"
     """
+
     def remove_book(self, book_id: int) -> None:
         if book_id in self.books:
             del self.books[book_id]
@@ -106,7 +113,8 @@ class Library:
     """
     Ищем книгу по ключам
     """
-    def search_book(self, search_term: str|int) -> List[Book]:
+
+    def search_book(self, search_term: str | int) -> List[Book]:
         found_books: List[Book] = []
         book_found: bool = False
         for book_id, book in self.books.items():
@@ -128,9 +136,11 @@ class Library:
     def display_all_books(self) -> None:
         if self.books:
             for book_id, book in self.books.items():
-                print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
+                print(
+                    f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
         else:
             print("No books in the library")
+
     """
     Меняем status в логике , либо книга "в наличии", либо её нет, так как она - "выдана"
     """

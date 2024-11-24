@@ -30,7 +30,6 @@ if __name__ == "__main__":
     library.remove_book(book_id_to_delete)
     print(f"Book {book_id_to_delete} deleted.")
 
-
     # Отображаем книгу с id = 1
     book_id_to_get = 1
     book = library.get_book(book_id_to_get)
