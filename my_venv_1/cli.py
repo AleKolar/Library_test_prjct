@@ -1,6 +1,6 @@
 import argparse
 from library import Library
-from serializer import LibrarySerializer
+
 
 '''
 Терминальные команды для интерфейса CLI:
@@ -17,7 +17,7 @@ python cli.py --search "Search Term"
 python cli.py --display
 
 5.	Изменение статуса книги:
-python cli.py --change_status
+python cli.py --change_status Book_ID status
 
 6. Отображение книги по id:
 python cli.py --get
@@ -29,41 +29,33 @@ def main():
     parser.add_argument('--remove', type=int, help='Remove a book by ID')
     parser.add_argument('--search', type=str, help='Search for a book by title, author, or year')
     parser.add_argument('--display', action='store_true', help='Display all books in the library')
-    parser.add_argument('--change_status', nargs=2, metavar=('book_id', 'new_status'),
-                        help='Change the status of a book by ID')
+    parser.add_argument('--change_status', nargs=2, metavar=('book_id', 'new_status'), help='Change the status of a book by ID')
     parser.add_argument('--get', type=int, help='Get a book by its ID')
 
     args = parser.parse_args()
 
     library = Library()
-    library_data_file = 'C:/Users/User/PycharmProjects/Test_Project_8/my_venv_1/library_data.json'
-
-    library_data = LibrarySerializer.load_from_file(library_data_file)
-
-    for book in library_data.values():
-        library.add_book(book.title, book.author, book.year)
+    library.deserialize_library()
 
     if args.add:
-        title, author, year = args.add
-        library.add_book(title, author, int(year))
-        LibrarySerializer.save_to_file(library.books, library_data_file)
+        library.add_book(args.add[0], args.add[1], int(args.add[2]))
+        library.serialize_library()
     elif args.remove:
         library.remove_book(args.remove)
-        LibrarySerializer.save_to_file(library.books, library_data_file)
+        library.serialize_library()
     elif args.search:
-        library.search_book(args.search)
+        found_books = library.search_book(args.search)
+        for book in found_books:
+            print(book)
+    elif args.display:
+        library.display_all_books()
     elif args.change_status:
         book_id, new_status = args.change_status
         library.change_status(int(book_id), new_status)
-        LibrarySerializer.save_to_file(library.books, library_data_file)
-    elif args.display:
-        serialized_books = LibrarySerializer.serialize_display_books(library.books)
-        print(serialized_books)
+        library.serialize_library()
     elif args.get:
-        book_id = args.get
-        library.get_book(book_id)
-    else:
-        parser.print_help()
+        book = library.get_book(args.get)
+        print(book)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

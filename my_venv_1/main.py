@@ -1,52 +1,45 @@
+import json
 from library import Book, Library
 from serializer import LibrarySerializer
+from json.decoder import JSONDecodeError
 
 if __name__ == "__main__":
     library = Library()
 
-    # Добавление нескольких книг
-    library.add_book( "Python", "John Doe", 2021)
+    try:
+        library.deserialize_library()
+    except JSONDecodeError:
+        print("Error: JSON file is empty or in incorrect format.")
+    except FileNotFoundError:
+        print("Error: Library JSON file not found.")
+
+    # Добавляем книгу в library
+    library.add_book("Python", "John Doe", 2021)
     library.add_book("Python_2", "Jane Smith", 2020)
     library.add_book("Arthur king", "Mary Ann", 2000)
 
-    # Сохранение библиотеки в файл
-    LibrarySerializer.save_to_file(library.books, "library_data.json")
+    # Сериализуем library в JSON file
+    library.serialize_library()
 
-    # Загрузка библиотеки из файла
-    library.books = LibrarySerializer.load_from_file("library_data.json")
+    # Изменяем status книги
+    book_id_to_change = 1
+    new_status = "выдана"  # Change status to "выдана" or "в наличии"
+    library.change_status(book_id_to_change, new_status)
 
-    # Поиск книг по заданным критериям из ТЗ
-    found_books = library.search_book("Python")
+    # Удаляем книгу
+    book_id_to_delete = 2
+    library.remove_book(book_id_to_delete)
+    print(f"Book {book_id_to_delete} deleted.")
 
-    if found_books:
-        for book in found_books:
-            print(f"Found Book: {book.title} by {book.author}")
-    else:
-        print("No books found.")
+    # Отображаем книгу с id = 1
+    book_id_to_get = 1
+    book = library.get_book(book_id_to_get)
 
-    no_found_books = library.search_book("No Python")
+    # Ищем книгу по названию
+    search_term = "Arthur king"
+    found_books = library.search_book(search_term)
 
-    if no_found_books:
-        for book in no_found_books:
-            print(f"Found Book: {book.title} by {book.author}")
-    else:
-        print("No books found.")
+    # Сериализуем library снова , после изменения status
+    library.serialize_library()
 
-
-    # Обновление статуса книг из JSON данных
-    json_data = '[{"id": 1, "status": "выдана"}, {"id": 2, "status": "выдана"}]'
-    LibrarySerializer.update_status_from_json(library.books, json_data)
-
-    # Отображение всех книг после обновления статусов
-    library.display_books()
-
-    book_id = 3  # Example book ID
-    book_1 = library.get_book(book_id)
-    print("Вы это искали:", book_1)
-
-    # Вывод информации о книгах
-    print("Books in library:")
-    for book_id, book in library.books.items():
-        print(f"ID: {book_id}, Title: {book.title}, Author: {book.author}, Year: {book.year}, Status: {book.status}")
-
-    print("Словарь:", library)
+    library.display_all_books()
