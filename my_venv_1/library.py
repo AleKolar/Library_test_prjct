@@ -86,10 +86,9 @@ class Library:
     """
     Добавляем книгу
     """
-    def add_book(self, title: str, author: str, year: int) -> None:
-        book_id = len(self.books) + 1
-        book: Book = Book(book_id,title, author, year)
-        self.books[book.id] = book
+    def add_book(self, title, author, year, status="в наличии"):
+        book_id = max(self.books.keys(), default=0) + 1
+        self.books[book_id] = Book(book_id, title, author, year, status)
 
     """
     Удаляем книгу

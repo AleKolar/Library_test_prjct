@@ -8,9 +8,30 @@
     },
     "3": {
         "id": 3,
-        "title": "OOOOOOOO",
-        "author": "oooooooooooo",
+        "title": "Arthur king part 2",
+        "author": "Mary Ann",
         "year": 2000,
-        "status": "\u0432\u044b\u0434\u0430\u043d\u0430"
+        "status": "\u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438"
+    },
+    "4": {
+        "id": 4,
+        "title": "Python_1",
+        "author": "John Doe",
+        "year": 2021,
+        "status": "\u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438"
+    },
+    "5": {
+        "id": 5,
+        "title": "Python_4",
+        "author": "Jane Smith",
+        "year": 2020,
+        "status": "\u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438"
+    },
+    "6": {
+        "id": 6,
+        "title": "Arthur king part 2",
+        "author": "Mary Ann",
+        "year": 2000,
+        "status": "\u0432 \u043d\u0430\u043b\u0438\u0447\u0438\u0438"
     }
 }
