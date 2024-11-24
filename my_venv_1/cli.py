@@ -20,7 +20,7 @@ python cli.py --display
 python cli.py --change_status Book_ID status
 
 6. Отображение книги по id:
-python cli.py --get
+python cli.py --get Book_ID
 
 '''
 def main():

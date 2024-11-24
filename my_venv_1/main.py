@@ -14,9 +14,9 @@ if __name__ == "__main__":
         print("Error: Library JSON file not found.")
 
     # Добавляем книгу в library
-    library.add_book("Python_1", "John Doe", 2021)
-    library.add_book("Python_4", "Jane Smith", 2020)
-    library.add_book("Arthur king part 2", "Mary Ann", 2000)
+    library.add_book("Python_4", "John Doe", 2021)
+    library.add_book("Python_5", "Jane Smith", 2020)
+    library.add_book("Arthur king part 6", "Mary Ann", 2000)
 
     # Сериализуем library в JSON file
     library.serialize_library()
