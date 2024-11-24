@@ -1,6 +1,5 @@
 import json
 from library import Book, Library
-from serializer import LibrarySerializer
 from json.decoder import JSONDecodeError
 
 if __name__ == "__main__":
