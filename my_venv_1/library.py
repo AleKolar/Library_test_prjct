@@ -14,14 +14,14 @@ class Book:
         self.year: int = year
         self.status: str = status
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "title": self.title,
-            "author": self.author,
-            "year": self.year,
-            "status": self.status
-        }
+    # def serialize(self):
+    #     return {
+    #         "id": self.id,
+    #         "title": self.title,
+    #         "author": self.author,
+    #         "year": self.year,
+    #         "status": self.status
+    #     }
 
     def __str__(self):
         return f"Book: {self.title} by {self.author} ({self.year})"
@@ -70,6 +70,9 @@ class Library:
         except FileNotFoundError:
             print("Library not found. Empty library.")
 
+    '''
+    Получаем книгу по её id
+    '''
     def get_book(self, book_id): # Отображаем книгу по id (Для визуализации)
         if book_id in self.books:
             book = self.books[book_id]

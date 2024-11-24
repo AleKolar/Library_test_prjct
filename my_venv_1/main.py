@@ -27,14 +27,15 @@ if __name__ == "__main__":
     library.change_status(book_id_to_change, new_status)
 
     # # Удаляем книгу
-    # book_id_to_delete = 2
-    # library.remove_book(book_id_to_delete)
-    # print(f"Book {book_id_to_delete} deleted.")
+    book_id_to_delete = 2
+    library.remove_book(book_id_to_delete)
+    print(f"Book {book_id_to_delete} deleted.")
 
 
     # Отображаем книгу с id = 1
     book_id_to_get = 1
     book = library.get_book(book_id_to_get)
+    print("Вы это искали:", book)
 
     # Ищем книгу по названию
     search_term = "Arthur king"
