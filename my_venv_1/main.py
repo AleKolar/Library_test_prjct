@@ -25,7 +25,7 @@ if __name__ == "__main__":
     new_status = "выдана"  # Change status to "выдана" or "в наличии"
     library.change_status(book_id_to_change, new_status)
 
-    # # Удаляем книгу
+    # Удаляем книгу по её id
     book_id_to_delete = 2
     library.remove_book(book_id_to_delete)
     print(f"Book {book_id_to_delete} deleted.")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     book = library.get_book(book_id_to_get)
     print("Вы это искали:", book)
 
-    # Ищем книгу по названию
+    # Ищем книгу по названию или автору или году
     search_term = "Arthur king"
     found_books = library.search_book(search_term)
 
