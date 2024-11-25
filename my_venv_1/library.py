@@ -41,6 +41,9 @@ class Library:
     def __str__(self):
         return "\n".join([f"Book {book_id}: {book}" for book_id, book in self.books.items()])
 
+    '''
+    Загружаем данные из хранилища в атрибут self.books
+    '''
     def load_library_data(self):
         try:
             with open('library_data.json', 'r') as file:
@@ -49,6 +52,9 @@ class Library:
             print("Library data file not found. Starting with an empty library.")
             self.books = []
 
+    '''
+    Преобразуем словарь  в JSON и сохраняем его в хранилище
+    '''
     def save_library_data(self):
         data = {book_id: book.serialize() for book_id, book in self.books.items()}
         with open(file_path, "w") as file:
